@@ -6,7 +6,7 @@ class App extends Component {
   state = {
     todos: [
       { name: "test test test", done: false },
-      { name: "asdasdasd", done: true },
+      { name: "asdasdasdd", done: true },
       {
         name:
           "7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n",
