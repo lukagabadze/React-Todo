@@ -5,10 +5,10 @@ import Todos from "./Todos/Todos";
 class App extends Component {
   state = {
     todos: [
-      { id: "76v-43n", name: "test test test", done: false },
-      { id: "7qn0fv6b", name: "asdasdasdd", done: true },
+      { id: "0", name: "test test test", done: false },
+      { id: "1", name: "asdasdasdd", done: true },
       {
-        id: "q6b384=nm",
+        id: "2",
         name:
           "7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n",
         done: false,
@@ -20,8 +20,12 @@ class App extends Component {
 
   addTodoHandler = (todo) => {
     const todos = [...this.state.todos];
-    todos.push({ name: todo, done: false });
-    console.log(todos);
+    todos.push({
+      id: (Math.random() * 100000).toString(),
+      name: todo,
+      done: false,
+    });
+    console.log((Math.random() * 100000).toString());
     this.setState({ todos: todos });
   };
 
