@@ -6,7 +6,15 @@ const todo = (props) => {
   }`;
 
   return (
-    <div className="bg-gray-600 rounded-md text-white my-6  flex justify-start items-center">
+    <li
+      // {...props.provided.draggableProps}
+      // {...props.provided.dragHandleProps}
+      // ref={props.innerRef}
+      ref={props.innerRef}
+      {...props.provided.draggableProps}
+      {...props.provided.dragHandleProps}
+      className="bg-gray-600 rounded-md text-white my-6  flex justify-start items-center active"
+    >
       <div className="flex flex-none py-2 pl-3 ">
         <input
           type="checkbox"
@@ -34,7 +42,7 @@ const todo = (props) => {
           />
         </svg>
       </div>
-    </div>
+    </li>
   );
 };
 

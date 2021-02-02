@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import Controls from "./Controls/Controls";
-import Todo from "./Todo/Todo";
+import Todos from "./Todos/Todos";
 
 class App extends Component {
   state = {
     todos: [
-      { name: "test test test", done: false },
-      { name: "asdasdasdd", done: true },
+      { id: "76v-43n", name: "test test test", done: false },
+      { id: "7qn0fv6b", name: "asdasdasdd", done: true },
       {
+        id: "q6b384=nm",
         name:
           "7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n7b3980n",
         done: false,
       },
     ],
     filter: 2,
+    activeInd: 0,
   };
 
   addTodoHandler = (todo) => {
@@ -37,24 +39,18 @@ class App extends Component {
   };
 
   filterChangeHandler = (filter) => {
-    this.setState({ filter });
+    this.setState({ filter: Number(filter) });
+  };
+
+  onDragEndHandler = (result) => {
+    console.log(this.state.todos);
+    const todos = [...this.state.todos];
+    const movedTodo = todos.splice(result.source.index, 1);
+    todos.splice(result.destination.index, 0, ...movedTodo);
+    this.setState({ todos });
   };
 
   render() {
-    const todoList = this.state.todos.map((todo, index) => {
-      if (this.state.filter != 2 && this.state.filter != todo.done) return null;
-      return (
-        <Todo
-          name={todo.name}
-          todoIndex={index}
-          done={todo.done}
-          onCheckHandler={this.onCheckHandler}
-          key={index}
-          deleteTodoHandler={this.deleteTodoHandler}
-        />
-      );
-    });
-
     return (
       <div className="flex justify-center ">
         <div className="bg-gray-300 rounded-md w-1/2 mt-24 p-10">
@@ -62,7 +58,14 @@ class App extends Component {
             addTodoHandler={this.addTodoHandler}
             filterChangeHandler={this.filterChangeHandler}
           />
-          {todoList}
+          <Todos
+            todos={this.state.todos}
+            filter={this.state.filter}
+            activeInd={this.state.activeInd}
+            onCheckHandler={this.onCheckHandler}
+            deleteTodoHandler={this.deleteTodoHandler}
+            onDragEndHandler={this.onDragEndHandler}
+          />
         </div>
       </div>
     );
